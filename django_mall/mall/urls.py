@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from user.views import index, RegisterView, LoginView
-from product.views import ProductList, ProductCreate, ProductDetailView
+from user.views import index, RegisterView, LoginView, logout
+from product.views import (
+    ProductList, ProductCreate, ProductDetailView,
+    ProductListAPI, ProductDetailAPI
+)
 from order.views import OrderCreate, OrderList
 
 urlpatterns = [
@@ -25,9 +28,14 @@ urlpatterns = [
     path('', index),
     path('register/', RegisterView.as_view()),
     path('login/', LoginView.as_view()),
+    path('logout/', logout),
     path('product/', ProductList.as_view()),
     path('product/<int:pk>/', ProductDetailView.as_view()),
     path('product/create/', ProductCreate.as_view()),
     path('order/', OrderList.as_view()),
     path('order/create/', OrderCreate.as_view()),
+
+    #rest_framework
+    path('api/product/', ProductListAPI.as_view()),
+    path('api/product/<int:pk>', ProductDetailAPI.as_view())
 ]

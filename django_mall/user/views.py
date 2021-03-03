@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
 from django.views.generic.edit import FormView
 from django.contrib.auth.hashers import make_password
 from .forms import RegisterForm, LoginForm
